@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  metasploitable:
+    tty: true
+    build:
+      context: .
+      dockerfile: dockerfiles/metasploitable2
+    container_name: METASPLOITABLE
+    restart: unless-stopped
+    networks:
+      - LAB
+    ports:
+      - "21:21"
+      - "22:22"
+      - "25:25"
+      - "80:80"
+      - "3306:3306"
+      - "5432:5432"
+      - "5900:5900"
+      - "6000:6000"
+      - "2121:2121"
+      - "8180:8180"
+
+  kali:
+    tty: true
+    build:
+      context: .
+      dockerfile: dockerfiles/kalilinuxrolling
+    cap_add:
+        - NET_ADMIN
+    container_name: kali
+    restart: unless-stopped
+    networks:
+      - LAB
+
+networks:
+  LAB:
+    driver: bridge
