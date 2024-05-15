@@ -28,7 +28,7 @@ services:
       dockerfile: dockerfiles/kalilinuxrolling
     cap_add:
         - NET_ADMIN
-    container_name: kali
+    container_name: KALI
     restart: unless-stopped
     networks:
       - LAB
